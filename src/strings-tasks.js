@@ -400,6 +400,7 @@ function invertCase(str) {
   // eslint-disable-next-line no-restricted-syntax
   const newStr = str
     .split('')
+    // eslint-disable-next-line func-names
     .map(function (char) {
       const upper = char.toUpperCase();
       if (char === upper) {
