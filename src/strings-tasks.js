@@ -334,8 +334,13 @@ function countVowels(str) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  const str1 = str
+    .toLowerCase()
+    .replace(/[^a-z]/g, '')
+    .replace(',', '');
+  // eslint-disable-next-line prefer-template
+  return str1 === str1.split('').reverse().join('');
 }
 
 /**
@@ -350,8 +355,16 @@ function isPalindrome(/* str */) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  let max = 0;
+  let word = '';
+  sentence.split(' ').forEach((element) => {
+    if (max < element.length) {
+      max = element.length;
+      word = element;
+    }
+  });
+  return word;
 }
 
 /**
@@ -364,8 +377,12 @@ function findLongestWord(/* sentence */) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
-  throw new Error('Not implemented');
+function reverseWords(str) {
+  let response = '';
+  str.split(' ').forEach((element) => {
+    response += ` ${reverseString(element)}`;
+  });
+  return response.trimStart();
 }
 
 /**
@@ -379,8 +396,19 @@ function reverseWords(/* str */) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  // eslint-disable-next-line no-restricted-syntax
+  const newStr = str
+    .split('')
+    .map(function (char) {
+      const upper = char.toUpperCase();
+      if (char === upper) {
+        return char.toLowerCase();
+      }
+      return upper;
+    })
+    .join('');
+  return newStr;
 }
 
 /**
@@ -392,7 +420,7 @@ function invertCase(/* str */) {
  * @param {string} lastName - The last name to include in the template.
  * @return {string} - The formatted string generated from the template.
  *
- * @example
+ * @exam
  *   getStringFromTemplate('John','Doe') => 'Hello, John Doe!'
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
